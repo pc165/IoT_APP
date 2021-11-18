@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: rootProject.file("gradle/git-tag-version.gradle")
+
 android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "com.android.iotProject"
+        applicationId "com.android.iotproject"
         minSdkVersion 18
         targetSdkVersion 31
         versionCode getVersionCodeFromTags()
@@ -47,7 +48,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
 

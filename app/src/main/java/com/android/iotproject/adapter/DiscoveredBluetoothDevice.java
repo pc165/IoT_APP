@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.adapter;
+package com.android.iotproject.adapter;
 
 import android.bluetooth.BluetoothDevice;
 import android.os.Parcel;
@@ -79,7 +79,7 @@ public class DiscoveredBluetoothDevice implements Parcelable {
 
 	/**
 	 * This method returns true if the RSSI range has changed. The RSSI range depends on drawable
-	 * levels from {@link com.android.iotProject.R.drawable#ic_signal_bar}.
+	 * levels from {@link com.android.iotproject.R.drawable#ic_signal_bar}.
 	 *
 	 * @return True, if the RSSI range has changed.
 	 */

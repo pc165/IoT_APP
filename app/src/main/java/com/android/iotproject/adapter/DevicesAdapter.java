@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.adapter;
+package com.android.iotproject.adapter;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -32,10 +32,10 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import com.android.iotProject.R;
-import com.android.iotProject.ScannerActivity;
-import com.android.iotProject.databinding.DeviceItemBinding;
-import com.android.iotProject.viewmodels.DevicesLiveData;
+import com.android.iotproject.R;
+import com.android.iotproject.ScannerActivity;
+import com.android.iotproject.databinding.DeviceItemBinding;
+import com.android.iotproject.viewmodels.DevicesLiveData;
 
 public class DevicesAdapter extends ListAdapter<DiscoveredBluetoothDevice, DevicesAdapter.ViewHolder> {
 	private static final DiffUtil.ItemCallback<DiscoveredBluetoothDevice> DIFFER = new DeviceDiffCallback();

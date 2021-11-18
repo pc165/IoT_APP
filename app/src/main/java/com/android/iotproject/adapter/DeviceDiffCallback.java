@@ -20,19 +20,23 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.profile.callback;
-
-import android.bluetooth.BluetoothDevice;
+package com.android.iotproject.adapter;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 
-public interface BlinkyLedCallback {
+public class DeviceDiffCallback extends DiffUtil.ItemCallback<DiscoveredBluetoothDevice> {
 
-    /**
-     * Called when the data has been sent to the connected device.
-     *
-     * @param device the target device.
-     * @param on true when LED was enabled, false when disabled.
-     */
-    void onLedStateChanged(@NonNull final BluetoothDevice device, final boolean on);
+	DeviceDiffCallback() {
+	}
+
+	@Override
+	public boolean areItemsTheSame(@NonNull final DiscoveredBluetoothDevice oldItem, @NonNull final DiscoveredBluetoothDevice newItem) {
+		return oldItem.equals(newItem);
+	}
+
+	@Override
+	public boolean areContentsTheSame(@NonNull final DiscoveredBluetoothDevice oldItem, @NonNull final DiscoveredBluetoothDevice newItem) {
+		return oldItem.hasRssiLevelChanged();
+	}
 }

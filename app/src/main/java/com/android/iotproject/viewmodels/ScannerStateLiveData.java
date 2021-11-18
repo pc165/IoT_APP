@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.viewmodels;
+package com.android.iotproject.viewmodels;
 
 import androidx.lifecycle.LiveData;
 

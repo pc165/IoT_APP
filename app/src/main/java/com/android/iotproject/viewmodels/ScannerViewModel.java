@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.viewmodels;
+package com.android.iotproject.viewmodels;
 
 import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
@@ -37,7 +37,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import java.util.List;
 
-import com.android.iotProject.utils.Utils;
+import com.android.iotproject.utils.Utils;
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat;
 import no.nordicsemi.android.support.v18.scanner.ScanCallback;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
@@ -100,7 +100,7 @@ public class ScannerViewModel extends AndroidViewModel {
 	/**
 	 * Forces the observers to be notified. This method is used to refresh the screen after the
 	 * location permission has been granted. In result, the observer in
-	 * {@link com.android.iotProject.ScannerActivity} will try to start scanning.
+	 * {@link com.android.iotproject.ScannerActivity} will try to start scanning.
 	 */
 	public void refresh() {
 		scannerStateLiveData.refresh();

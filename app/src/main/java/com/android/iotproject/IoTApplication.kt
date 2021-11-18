@@ -1,4 +1,4 @@
-package com.android.iotProject
+package com.android.iotproject
 
 import android.app.Application
 import android.os.Build

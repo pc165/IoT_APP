@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject;
+package com.android.iotproject;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -44,21 +44,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
-import com.android.iotProject.adapter.DevicesAdapter;
-import com.android.iotProject.adapter.DiscoveredBluetoothDevice;
-import com.android.iotProject.databinding.ActivityScannerBinding;
-import com.android.iotProject.utils.Utils;
-import com.android.iotProject.viewmodels.ScannerStateLiveData;
-import com.android.iotProject.viewmodels.ScannerViewModel;
+import com.android.iotproject.adapter.DevicesAdapter;
+import com.android.iotproject.adapter.DiscoveredBluetoothDevice;
+import com.android.iotproject.databinding.ActivityScannerBinding;
+import com.android.iotproject.utils.Utils;
+import com.android.iotproject.viewmodels.ScannerStateLiveData;
+import com.android.iotproject.viewmodels.ScannerViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class ScannerActivity extends AppCompatActivity implements DevicesAdapter.OnItemClickListener {
-    // This flag is false when the app is first started (cold start).
-    // In this case, the animation will be fully shown (1 sec).
-    // Subsequent launches will display it only briefly.
-    // It is only used on API 31+
-    private static final boolean coldStart = true;
-
     private ScannerViewModel scannerViewModel;
     private ActivityScannerBinding binding;
 
@@ -175,10 +169,9 @@ public class ScannerActivity extends AppCompatActivity implements DevicesAdapter
 
     @Override
     public void onItemClick(@NonNull final DiscoveredBluetoothDevice device) {
-        final Intent controlBlinkIntent = new Intent(this, BlinkyActivity.class);
-        controlBlinkIntent.putExtra(BlinkyActivity.EXTRA_DEVICE, device);
+        final Intent controlBlinkIntent = new Intent(this, ProductActivity.class);
+        controlBlinkIntent.putExtra(ProductActivity.EXTRA_DEVICE, device);
         startActivity(controlBlinkIntent);
-
     }
 
     /**

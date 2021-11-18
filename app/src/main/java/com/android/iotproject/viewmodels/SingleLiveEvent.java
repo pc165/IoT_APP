@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.android.iotProject.viewmodels;
+package com.android.iotproject.viewmodels;
 
 import android.util.Log;
 

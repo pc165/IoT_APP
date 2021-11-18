@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.utils;
+package com.android.iotproject.utils;
 
 import android.Manifest;
 import android.app.Activity;

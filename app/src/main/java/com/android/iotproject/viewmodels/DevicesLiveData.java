@@ -20,7 +20,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.android.iotProject.viewmodels;
+package com.android.iotproject.viewmodels;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,8 +30,9 @@ import android.os.ParcelUuid;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.android.iotProject.adapter.DiscoveredBluetoothDevice;
-import com.android.iotProject.profile.BlinkyManager;
+import com.android.iotproject.adapter.DiscoveredBluetoothDevice;
+import com.android.iotproject.profile.ProductManager;
+
 import no.nordicsemi.android.support.v18.scanner.ScanRecord;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 
@@ -42,7 +43,7 @@ import no.nordicsemi.android.support.v18.scanner.ScanResult;
  */
 @SuppressWarnings("unused")
 public class DevicesLiveData extends LiveData<List<DiscoveredBluetoothDevice>> {
-	private static final ParcelUuid FILTER_UUID = new ParcelUuid(BlinkyManager.LBS_UUID_SERVICE);
+	private static final ParcelUuid FILTER_UUID = new ParcelUuid(ProductManager.Companion.getUART_UUID_SERVICE());
 	private static final int FILTER_RSSI = -50; // [dBm]
 
 	@NonNull

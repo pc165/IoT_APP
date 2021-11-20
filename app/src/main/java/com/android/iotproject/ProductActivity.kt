@@ -35,7 +35,16 @@ class ProductActivity : AppCompatActivity() {
         binding.infoNotSupported.actionRetry.setOnClickListener { viewModel.reconnect() }
         binding.infoTimeout.actionRetry.setOnClickListener { viewModel.reconnect() }
         binding.btnGetData.setOnClickListener {}
-        binding.btnGetImage.setOnClickListener { viewModel.getPicture()}
+        binding.btnGetImage.setOnClickListener { viewModel.getPicture() }
+
+        viewModel.getImage().observe(this, {
+            binding.ivImageCanvas.setImageBitmap(it)
+        })
+
+        viewModel.getPercent().observe(this, {
+            binding.btnGetImage.isEnabled = it == 0
+        })
+
 
         viewModel.connectionState.observe(this, { state: ConnectionState ->
             when (state.state!!) {

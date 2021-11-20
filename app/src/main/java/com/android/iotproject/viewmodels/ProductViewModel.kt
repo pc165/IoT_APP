@@ -2,8 +2,12 @@ package com.android.iotproject.viewmodels
 
 import android.app.Application
 import android.bluetooth.BluetoothDevice
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.android.iotproject.adapter.DiscoveredBluetoothDevice
 import com.android.iotproject.profile.ProductManager
 import no.nordicsemi.android.ble.ConnectRequest
@@ -15,6 +19,9 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     private var connectRequest: ConnectRequest? = null
     val connectionState: LiveData<ConnectionState>
         get() = productManager.state
+
+    fun getImage() = productManager.getImage()
+    fun getPercent() = productManager.getPercent()
 
     fun connect(target: DiscoveredBluetoothDevice) {
         // Prevent from calling again when called again (screen orientation changed).

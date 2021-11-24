@@ -6,17 +6,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.android.iotproject.adapter.DiscoveredBluetoothDevice
-import com.android.iotproject.databinding.ActivityCameraBinding
+import com.android.iotproject.databinding.ActivityProductBinding
 import com.android.iotproject.viewmodels.ProductViewModel
 import no.nordicsemi.android.ble.livedata.state.ConnectionState
 import no.nordicsemi.android.ble.observer.ConnectionObserver
 
 class ProductActivity : AppCompatActivity() {
     private lateinit var viewModel: ProductViewModel
-    private lateinit var binding: ActivityCameraBinding
+    private lateinit var binding: ActivityProductBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCameraBinding.inflate(layoutInflater)
+        binding = ActivityProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val intent = intent
         val device = intent.getParcelableExtra<DiscoveredBluetoothDevice>(EXTRA_DEVICE)!!

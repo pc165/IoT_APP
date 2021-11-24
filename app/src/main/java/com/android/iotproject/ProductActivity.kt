@@ -2,6 +2,7 @@ package com.android.iotproject
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.android.iotproject.adapter.DiscoveredBluetoothDevice
@@ -30,22 +31,19 @@ class ProductActivity : AppCompatActivity() {
         // Configure the view model.
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         viewModel.connect(device)
-
-        // Set up views.
-        binding.infoNotSupported.actionRetry.setOnClickListener { viewModel.reconnect() }
-        binding.infoTimeout.actionRetry.setOnClickListener { viewModel.reconnect() }
-        binding.btnGetData.setOnClickListener {}
-        binding.btnGetImage.setOnClickListener { viewModel.getPicture() }
-
         viewModel.getImage().observe(this, {
             binding.ivImageCanvas.setImageBitmap(it)
         })
-
         viewModel.getPercent().observe(this, {
             binding.btnGetImage.isEnabled = it == 0
+            binding.btnGetData.isEnabled = it == 0
+            if (it == 0)
+                binding.tvProgress.visibility = View.GONE
+            else
+                binding.tvProgress.visibility = View.VISIBLE
+
+            binding.tvProgress.text = it.toString()
         })
-
-
         viewModel.connectionState.observe(this, { state: ConnectionState ->
             when (state.state!!) {
                 ConnectionState.State.CONNECTING -> {
@@ -58,6 +56,7 @@ class ProductActivity : AppCompatActivity() {
                 ConnectionState.State.READY -> {
                     binding.progressContainer.visibility = View.GONE
                     binding.deviceContainer.visibility = View.VISIBLE
+                    binding.btnGetData.isEnabled = false
                 }
                 ConnectionState.State.DISCONNECTED -> {
                     if (state is ConnectionState.Disconnected) {
@@ -74,6 +73,16 @@ class ProductActivity : AppCompatActivity() {
             }
         })
 
+
+        // Set up views.
+        binding.apply {
+            infoNotSupported.actionRetry.setOnClickListener { viewModel.reconnect() }
+            infoTimeout.actionRetry.setOnClickListener { viewModel.reconnect() }
+            btnGetImage.setOnClickListener { viewModel.getPicture() }
+            btnGetData.setOnClickListener {
+
+            }
+        }
     }
 
     companion object {

@@ -36,7 +36,7 @@
     tools:ignore="ContentDescription">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/icon"
+        android:id="@+id/iconProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -51,7 +51,7 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_toStartOf="@+id/rssi"
-        android:layout_toEndOf="@id/icon"
+        android:layout_toEndOf="@id/iconProduct"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:ellipsize="end"
         android:singleLine="true"
@@ -67,7 +67,7 @@
         android:layout_below="@+id/device_name"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_toEndOf="@id/icon"
+        android:layout_toEndOf="@id/iconProduct"
         tools:text="AA:BB:CC:DD:EE:FF"/>
 
     <androidx.appcompat.widget.AppCompatImageView

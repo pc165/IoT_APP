@@ -27,6 +27,7 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
 
     override fun onDataReceived(device: BluetoothDevice, data: Data) {
         try {
+            Log.d(TAG, "Received $data $percent")
             if (mBytesTransfered == mBytesTotal) {
                 val received: ByteArray = data.value!!
                 if (received[0] == 0xFF.toByte()) { // First byte should always be 0XFF
@@ -67,7 +68,6 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
                     if (jpgHeader.contentEquals(mDataBuffer.copyOfRange(0, 4))) {
                         image.value =
                             BitmapFactory.decodeByteArray(mDataBuffer, 0, mDataBuffer.size)
-                        percent.value = 0
                     } else {
                         Log.w("TAG", "JPG header missing!! Image data corrupt.")
                     }
@@ -81,6 +81,7 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
     }
 
     override fun onDataSent(device: BluetoothDevice, data: Data) {
-        // do nothing
+        Log.d(TAG, "Send $data")
+
     }
 }

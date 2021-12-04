@@ -169,8 +169,8 @@ public class ScannerActivity extends AppCompatActivity implements DevicesAdapter
 
     @Override
     public void onItemClick(@NonNull final DiscoveredBluetoothDevice device) {
-        final Intent controlBlinkIntent = new Intent(this, ProductActivity.class);
-        controlBlinkIntent.putExtra(ProductActivity.EXTRA_DEVICE, device);
+        final Intent controlBlinkIntent = new Intent(this, FragmentActivity.class);
+        controlBlinkIntent.putExtra(FragmentActivity.EXTRA_DEVICE, device);
         startActivity(controlBlinkIntent);
     }
 

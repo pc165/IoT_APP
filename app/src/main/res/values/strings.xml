@@ -27,9 +27,11 @@
     <string name="get_image">Get Image</string>
     <string name="product_name">Product name</string>
     <string name="product_id">0000000000000</string>
-    <string name="product_price">Product price</string>
+    <string name="product_quantity">Quantity</string>
     <string name="get_data">Get data</string>
-    <string name="add_product">Add Product</string>
+    <string name="add_product">Add</string>
     <string name="total">Total</string>
     <string name="check_out">Check Out</string>
+    <string name="basket">Basket</string>
+    <string name="product">Product</string>
 </resources>

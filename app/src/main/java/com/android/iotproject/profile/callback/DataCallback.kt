@@ -67,7 +67,6 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
                     if (jpgHeader.contentEquals(mDataBuffer.copyOfRange(0, 4))) {
                         image.value =
                             BitmapFactory.decodeByteArray(mDataBuffer, 0, mDataBuffer.size)
-                        percent.value = 0
                     } else {
                         Log.w("TAG", "JPG header missing!! Image data corrupt.")
                     }
@@ -81,6 +80,7 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
     }
 
     override fun onDataSent(device: BluetoothDevice, data: Data) {
-        // do nothing
+        Log.d(TAG, "Send $data")
+
     }
 }

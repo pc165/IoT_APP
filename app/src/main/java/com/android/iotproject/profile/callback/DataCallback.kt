@@ -18,7 +18,7 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
     private var mBytesTransfered: Int = 0
     private var mBytesTotal: Int = 0
     private var mDataBuffer: ByteArray = ByteArray(0)
-    private var mChecksum: Long = 0;
+    private var mChecksum: Long = 0
     var percent: MutableLiveData<Int> = MutableLiveData<Int>(0)
     var image: MutableLiveData<Bitmap> =
         MutableLiveData<Bitmap>(Bitmap.createBitmap(10, 10, Bitmap.Config.RGB_565))

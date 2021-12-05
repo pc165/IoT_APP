@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.android.iotproject.adapter.DiscoveredBluetoothDevice
 import com.android.iotproject.databinding.FragmentProductBinding
-import com.android.iotproject.utils.DeviceSingleton
 import com.android.iotproject.viewmodels.ProductViewModel
 import no.nordicsemi.android.ble.livedata.state.ConnectionState
 import no.nordicsemi.android.ble.observer.ConnectionObserver
 
 
-class ProductFragment : Fragment() {
+class ProductFragment(val device: DiscoveredBluetoothDevice) : Fragment() {
     private lateinit var viewModel: ProductViewModel
     private lateinit var binding: FragmentProductBinding
     override fun onCreateView(
@@ -41,7 +41,7 @@ class ProductFragment : Fragment() {
         }
 
         // Configure the view model.
-        viewModel.connect(DeviceSingleton.device!!)
+        viewModel.connect(device)
         viewModel.connectionState.observe(viewLifecycleOwner, { state: ConnectionState ->
             when (state.state!!) {
                 ConnectionState.State.CONNECTING -> {

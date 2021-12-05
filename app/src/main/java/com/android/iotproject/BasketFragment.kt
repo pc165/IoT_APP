@@ -17,6 +17,6 @@ class BasketFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() =BasketFragment()
+        fun newInstance() = BasketFragment()
     }
 }

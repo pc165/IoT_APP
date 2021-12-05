@@ -27,6 +27,7 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
 
     override fun onDataReceived(device: BluetoothDevice, data: Data) {
         try {
+            Log.d(TAG, "Received $data $percent")
             if (mBytesTransfered == mBytesTotal) {
                 val received: ByteArray = data.value!!
                 if (received[0] == 0xFF.toByte()) { // First byte should always be 0XFF

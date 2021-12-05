@@ -39,10 +39,10 @@ class FragmentActivity : AppCompatActivity() {
             TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
                 when (position + 1) {
                     1 -> {
-                        tab.text = R.string.product.toString()
+                        tab.text = getString(R.string.product)
                     }
                     2 -> {
-                        tab.text = R.string.basket.toString()
+                        tab.text = getString(R.string.basket)
                         val badge: BadgeDrawable = tab.orCreateBadge
                         badge.backgroundColor =
                             ContextCompat.getColor(applicationContext, R.color.colorPrimary)

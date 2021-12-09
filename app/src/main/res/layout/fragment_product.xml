@@ -4,7 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        tools:context=".ProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="@string/quantity"
-                android:textSize="20sp"
+                android:layout_margin="8dp"
                 tools:ignore="LabelFor"
                 app:layout_constraintEnd_toStartOf="@+id/btnAddProduct"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +64,10 @@
 
         <Button
                 android:id="@+id/btnAddProduct"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/add_product"
-                android:textSize="20sp"
+                android:layout_margin="8dp"
                 app:layout_constraintStart_toEndOf="@+id/etQuantity"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -97,25 +97,24 @@
 
         <Button
                 android:id="@+id/btnGetData"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/get_data"
-                android:textSize="20sp"
+                android:layout_margin="8dp"
                 app:layout_constraintStart_toEndOf="@+id/btnGetImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnAddProduct" />
 
         <Button
                 android:id="@+id/btnGetImage"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/get_image"
-                android:textSize="20sp"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/btnGetData"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnGetData" />
+                app:layout_constraintTop_toTopOf="@+id/btnGetData"
+                app:layout_constraintBottom_toBottomOf="@+id/btnGetData" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

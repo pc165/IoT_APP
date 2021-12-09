@@ -13,10 +13,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.iotproject.adapter.DiscoveredBluetoothDevice
 import com.android.iotproject.adapter.ProductData
+import com.android.iotproject.data.ResquestInstance
+import com.android.iotproject.data.model.VolleyMultipartRequest
 import com.android.iotproject.databinding.FragmentProductBinding
+import com.android.iotproject.utils.Utils
 import com.android.iotproject.viewmodels.ProductViewModel
+import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import no.nordicsemi.android.ble.livedata.state.ConnectionState
 import no.nordicsemi.android.ble.observer.ConnectionObserver
+import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 
 class ProductFragment(val device: DiscoveredBluetoothDevice) : Fragment() {
@@ -49,7 +56,47 @@ class ProductFragment(val device: DiscoveredBluetoothDevice) : Fragment() {
         })
         binding.apply {
             btnGetImage.setOnClickListener { viewModel.getPicture() }
-            btnGetData.setOnClickListener { }
+            btnGetData.setOnClickListener { button ->
+                button.isEnabled = false
+                val url = getString(R.string.url_upload_item)
+                val multipartRequest: VolleyMultipartRequest = object : VolleyMultipartRequest(
+                    Method.POST, url,
+                    Response.Listener { response ->
+                        val charset = HttpHeaderParser.parseCharset(response.headers)
+                        val parsed: String = try {
+                            String(response.data, charset = charset(charset))
+                        } catch (e: UnsupportedEncodingException) {
+                            String(response.data)
+                        }
+                        val res = JSONObject(parsed)
+                        binding.tvProductName.text = res.getString("name")
+                        binding.tvProductPrice.text = res.getString("price")
+                        binding.tvProductID.text = res.getString("id")
+                        button.isEnabled = true
+                    },
+                    Response.ErrorListener { error ->
+                        error.printStackTrace()
+                        button.isEnabled = true
+                    }) {
+                    override fun getParams(): Map<String, String> {
+                        val params: MutableMap<String, String> = HashMap()
+                        params["token"] = ""
+
+                        return params
+                    }
+
+                    override fun getByteData(): Map<String, DataPart> {
+                        val params: MutableMap<String, DataPart> = HashMap()
+                        params["file"] = DataPart(
+                            "item.jpg",
+                            Utils.getFileDataFromDrawable(binding.ivImageCanvas.drawable),
+                            "image/jpeg"
+                        )
+                        return params
+                    }
+                }
+                ResquestInstance.getInstance(requireContext()).addToRequestQueue(multipartRequest)
+            }
             btnAddProduct.setOnClickListener {
                 val image = ivImageCanvas.drawable.toBitmap()
                 try {
@@ -68,8 +115,7 @@ class ProductFragment(val device: DiscoveredBluetoothDevice) : Fragment() {
                         )
                     )
                 } catch (e: Exception) {
-                    Log.w("ProductFragment", "$e")
-                    Toast.makeText(context, "Invalid data $e", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Invalid data", Toast.LENGTH_SHORT).show()
                 }
             }
         }

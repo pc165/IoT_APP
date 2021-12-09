@@ -14,7 +14,9 @@ class CustomRequest(
     errorListener: Response.ErrorListener
 ) : StringRequest(method, url, listener, errorListener) {
     companion object {
-        const val CONTENT_APP: String = "application/x-www-form-urlencoded; charset=UTF-8"
+        const val APPLICATION_URL_ENCODED: String =
+            "application/x-www-form-urlencoded; charset=UTF-8"
+        const val MULTIPART_FORM_DATA: String = "multipart/form-data"
     }
 
     private var mMethod: Int = method

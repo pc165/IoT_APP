@@ -47,7 +47,7 @@ class LoginRepository(val context: Context) {
         }
         val req = CustomRequest(
             Request.Method.POST, url,
-            CustomRequest.CONTENT_APP, params, response, error
+            CustomRequest.APPLICATION_URL_ENCODED, params, response, error
         )
         ResquestInstance.getInstance(context).addToRequestQueue(req)
     }

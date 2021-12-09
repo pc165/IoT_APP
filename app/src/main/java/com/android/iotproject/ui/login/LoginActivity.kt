@@ -35,7 +35,8 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        loginViewModel = ViewModelProvider(this,LoginViewModelFactory(application))[LoginViewModel::class.java]
+        loginViewModel =
+            ViewModelProvider(this, LoginViewModelFactory(application))[LoginViewModel::class.java]
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -49,6 +50,10 @@ class LoginActivity : AppCompatActivity() {
             if (loginState.passwordError != null) {
                 password.error = getString(loginState.passwordError)
             }
+        })
+
+        loginViewModel.buttonState.observe(this@LoginActivity, {
+            login.isEnabled = it
         })
 
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {

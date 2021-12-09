@@ -20,22 +20,31 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
+    val buttonState: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     fun login(username: String, password: String) {
-        loginRepository.login(username, password,
-            object : VolleyResponse {
-                override fun processFinish(output: String?) {
-                    val answer = JSONObject(output!!)
-                    loginRepository.user = LoggedInUser(answer.getString("access_token"), "")
-                    _loginResult.value =
-                        LoginResult(success = LoggedInUserView(displayName = ""))
+        buttonState.value = false
+        try {
+            loginRepository.login(username, password,
+                object : VolleyResponse {
+                    override fun processFinish(output: String?) {
+                        val answer = JSONObject(output!!)
+                        loginRepository.user = LoggedInUser(answer.getString("access_token"), "")
+                        _loginResult.value =
+                            LoginResult(success = LoggedInUserView(displayName = ""))
+                        buttonState.value = true
+
+                    }
+                }, object : VolleyResponse {
+                    override fun processFinish(output: String?) {
+                        _loginResult.value = LoginResult(error = R.string.login_failed)
+                        buttonState.value = true
+                    }
                 }
-            }, object : VolleyResponse {
-                override fun processFinish(output: String?) {
-                    _loginResult.value = LoginResult(error = R.string.login_failed)
-                }
-            }
-        )
+            )
+        } catch (e: Exception) {
+            buttonState.value = true
+        }
     }
 
     fun loginDataChanged(username: String, password: String) {

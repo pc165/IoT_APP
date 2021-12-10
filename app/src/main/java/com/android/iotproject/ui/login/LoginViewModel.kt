@@ -1,16 +1,13 @@
 package com.android.iotproject.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import com.android.iotproject.data.LoginRepository
-import com.android.iotproject.data.Result
-
 import com.android.iotproject.R
+import com.android.iotproject.data.LoginRepository
 import com.android.iotproject.data.VolleyResponse
 import com.android.iotproject.data.model.LoggedInUser
-import com.android.volley.Response
 import org.json.JSONObject
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
@@ -29,7 +26,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                 object : VolleyResponse {
                     override fun processFinish(output: String?) {
                         val answer = JSONObject(output!!)
-                        loginRepository.user = LoggedInUser(answer.getString("access_token"), "")
+                        loginRepository.setUser(
+                            LoggedInUser(answer.getString("access_token"), "")
+                        )
                         _loginResult.value =
                             LoginResult(success = LoggedInUserView(displayName = ""))
                         buttonState.value = true

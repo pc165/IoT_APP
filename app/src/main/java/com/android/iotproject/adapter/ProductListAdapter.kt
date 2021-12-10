@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.iotproject.R
 import com.android.iotproject.databinding.ProductItemBinding
+import org.json.JSONArray
+import org.json.JSONObject
 
 data class ProductData(
     val name: String = "Unknown Product",
@@ -54,5 +56,18 @@ class ProductListAdapter(private val products: MutableList<ProductData>) :
 
     override fun getItemCount(): Int {
         return products.size
+    }
+
+    fun getAsJSON(): JSONObject {
+        val item = JSONObject()
+        val orderDetails = JSONArray()
+        for (i in products) {
+            item.put("item_id", i.id)
+            item.put("quantity", i.quantitaty)
+            orderDetails.put(item)
+        }
+        val order = JSONObject()
+        order.put("order_details", orderDetails)
+        return order
     }
 }

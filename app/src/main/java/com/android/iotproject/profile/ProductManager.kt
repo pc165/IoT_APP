@@ -17,7 +17,7 @@ import java.util.*
 
 
 class ProductManager(context: Context) : ObservableBleManager(context) {
-    private val TAG = "MyActivity"
+    private val TAG: String = javaClass.simpleName
     private var rxCharacteristic: BluetoothGattCharacteristic? = null
     private var txCharacteristic: BluetoothGattCharacteristic? = null
     private val dataCallBack: DataCallback = DataCallback()

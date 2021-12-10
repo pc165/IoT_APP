@@ -14,7 +14,7 @@ import java.util.zip.CRC32
 
 
 class DataCallback : DataReceivedCallback, DataSentCallback {
-    private var TAG = "DataCallback"
+    private var TAG: String = javaClass.simpleName
     private var mBytesTransfered: Int = 0
     private var mBytesTotal: Int = 0
     private var mDataBuffer: ByteArray = ByteArray(0)
@@ -27,7 +27,6 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
 
     override fun onDataReceived(device: BluetoothDevice, data: Data) {
         try {
-            Log.d(TAG, "Received $data $percent")
             if (mBytesTransfered == mBytesTotal) {
                 val received: ByteArray = data.value!!
                 if (received[0] == 0xFF.toByte()) { // First byte should always be 0XFF
@@ -35,7 +34,6 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
                     var check = ByteBuffer.wrap(received.copyOfRange(5, received.size))
                     check = check.order(ByteOrder.LITTLE_ENDIAN)
                     byteBuffer = byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
-
                     mBytesTotal = byteBuffer.int
                     mChecksum = (check.int.toLong()) and 0xffffffffL
                     mBytesTransfered = 0
@@ -45,7 +43,6 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
                     Log.w(TAG, "Picture info invalid $data")
                 }
             } else {
-                Log.d(TAG, "$data")
                 val txValue: ByteArray = data.value!!
                 System.arraycopy(
                     txValue,
@@ -69,7 +66,7 @@ class DataCallback : DataReceivedCallback, DataSentCallback {
                         image.value =
                             BitmapFactory.decodeByteArray(mDataBuffer, 0, mDataBuffer.size)
                     } else {
-                        Log.w("TAG", "JPG header missing!! Image data corrupt.")
+                        Log.w(TAG, "JPG header missing!! Image data corrupt.")
                     }
                 }
             }

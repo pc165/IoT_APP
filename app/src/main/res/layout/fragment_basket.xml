@@ -26,19 +26,29 @@
             android:layout_height="wrap_content"
             android:text="@string/total"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="@+id/btnCheckout"
-            app:layout_constraintBottom_toBottomOf="@+id/btnCheckout"
+            app:layout_constraintTop_toTopOf="@+id/btnClear"
+            app:layout_constraintBottom_toBottomOf="@+id/btnClear"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnCheckout" />
+            app:layout_constraintEnd_toStartOf="@id/btnClear" />
+
 
     <Button
             android:id="@+id/btnCheckout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/check_out"
-            app:layout_constraintStart_toEndOf="@+id/tvTotal"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="8dp"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+            android:id="@+id/btnClear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/clear"
+            app:layout_constraintStart_toEndOf="@+id/tvTotal"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnCheckout"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
